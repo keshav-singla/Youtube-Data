@@ -1,4 +1,5 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 
 class Video extends React.Component{
     constructor(props){
@@ -9,20 +10,21 @@ class Video extends React.Component{
     }
 
     componentDidMount(){
-        const {match} = this.props.location
+        console.log(this.props);
+        console.log();
+
+        localStorage.setItem('rememberMe', this.state.videoID.params.id);
         this.setState({
-            videoID : match.params.id
+            videoID : this.props.match
         })
     }
 
     render(){
         console.log(this.state.videoID);
-        
         return(
             <div>
                  <iframe 
-                    width="246" height="138"
-                    src={`https://www.youtube.com/embed/${this.state.videoID}`}
+                    src={`https://www.youtube.com/embed/${this.state.videoID.params.id}`}
                     allow='autoplay; encrypted-media'
                     allowFullScreen
                     title='video'>
@@ -32,4 +34,4 @@ class Video extends React.Component{
     }
 }
 
-export default Video;
+export default withRouter (Video);
