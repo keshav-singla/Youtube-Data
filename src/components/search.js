@@ -1,16 +1,23 @@
 import React from 'react';
 import axios from 'axios';
-import Videolist from './videoList';
+import Searchlist from './searchList';
+import '../styles/search.css'
+import '../styles/variable.css'
+
 
 const KEY = 'AIzaSyBdXjGbMZ7Yd_W3digAhPLAjnKWACgL5Us';
 
 class Search extends React.Component {
+    
     constructor() {
         super()
         this.state = {
+            search: '',
             list: [],
+            error: ''
         }
     }
+
 
     handleChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
@@ -18,34 +25,30 @@ class Search extends React.Component {
 
     youtubeApi = async () => {
         const serachApi = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${this.state.search}&key=${KEY} `)
-            .then(res => {
-                const data = res.data;
-                this.setState({
-                    list: data.items,
+        this.setState({
+            list: serachApi.data.items,
+        })
+        // this.props.history.push({ 
+        //     pathname: `/serach-query?=${this.state.search}`,
+        //     state: { detail: serachApi.data.items }})
+    }               
 
-                })
-            })
-            .catch(err => console.log(err))
-    }
+
 
     render() {
+        // console.log(this.state.list);
+        
         return (
-            <div>
-                <input type='text' placeholder='Search here' name='search' value={this.state.search} onChange={this.handleChange} />
-                <button onClick={() => this.youtubeApi()} > Search </button>   <br />
-
-                <div>
-                    <Videolist renderingList ={this.state.list} />
+            <div className='container'>
+                <div className='searchContainer'>
+                    <input className="searchBar" type='text' placeholder='Search here' name='search' value={this.state.search} onChange={this.handleChange} />
+                    <button className='searchButton' onClick={() => this.youtubeApi()} > Search </button>   <br />
                 </div>
-
-               
-
+                {this.state.error}
+                <Searchlist renderingList={this.state.list} />
             </div>
         )
     }
-
 }
 
 export default Search;
-
-// <ReactPlayer url={`https://www.youtube.com/watch?v=${this.state.id}`} playing />

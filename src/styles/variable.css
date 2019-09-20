@@ -1,0 +1,31 @@
+.container{
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    height: 100em ;
+}
+
+.searchContainer{
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+.searchList{
+    /* background-color: white; */
+    background-color: rgb(245, 245, 245);
+    align-content: flex-start;
+    margin-left: 10%;
+    margin-right: 10%;
+
+}
+
+.searchListContainer{
+    display: grid;
+  grid-template-columns: auto auto;
+  padding: 10px;
+  text-align: left;
+}
+
+.thumbnail{
+    font-family:  'raleway';
+    padding: 20px;
+}
