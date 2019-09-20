@@ -3,6 +3,8 @@ import axios from 'axios';
 import Searchlist from './searchList';
 import '../styles/search.css'
 import '../styles/variable.css'
+import { withRouter, Link } from 'react-router-dom'
+
 
 const KEY = 'AIzaSyBdXjGbMZ7Yd_W3digAhPLAjnKWACgL5Us';
 
@@ -12,10 +14,19 @@ class Search extends React.Component {
         super()
         this.state = {
             search: '',
+            videos: [],
             list: [],
             error: ''
         }
     }
+
+   componentDidMount(){
+       axios.get(`https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&key=${KEY}`)
+        .then(res => {
+            const videos = res.data.items;
+            this.setState({ videos });
+        })
+   }
 
     handleChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
@@ -27,10 +38,11 @@ class Search extends React.Component {
             list: serachApi.data.items,
         })
 
-    }               
+    } 
+    
 
     render() {
-        // console.log(this.state.list);
+        console.log(this.state.videos);
         
         return (
             <div className='container'>
@@ -39,10 +51,37 @@ class Search extends React.Component {
                     <button className='searchButton' onClick={() => this.youtubeApi()} > Search </button>   <br />
                 </div>
                 {this.state.error}
-                <Searchlist renderingList={this.state.list} />
+                <div className='searchList'>
+                {this.state.videos.map((key, index) => {
+
+                    console.log(key)
+                    return (
+                        <div className='searchListContainer'>
+                            <span className='thumbnail'>
+                                <Link
+                                    to={{
+                                        pathname: `/watch?=${key.id.videoId}`,
+                                        state: { fromDashboard: true }
+                                    }}
+                                >
+                                    <img
+                                        src={key.snippet.thumbnails.medium.url}
+                                        alt="new"
+                                    />
+                                </Link>
+                            </span>
+                            <span className='thumbnail'>
+                                <h2>{key.snippet.title}</h2>
+                                <p>{key.snippet.description}</p>
+                            </span>
+                        </div>
+                    )
+                })}
+            </div>
             </div>
         )
     }
 }
 
 export default Search;
+// GET https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&key=[YOUR_API_KEY] HTTP/1.1
