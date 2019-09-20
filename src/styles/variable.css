@@ -1,7 +1,7 @@
 .container{
     text-align: center;
     background-color: rgb(255, 255, 255);
-    height: 100em ;
+    /* height: 100em ; */
 }
 
 .searchContainer{
@@ -28,4 +28,10 @@
 .thumbnail{
     font-family:  'raleway';
     padding: 20px;
+}
+
+.videoContainer{
+    display: flex;
+    justify-content: center;
+    
 }

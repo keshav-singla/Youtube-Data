@@ -46,14 +46,10 @@ class Searchlist extends React.Component {
                             <span className='thumbnail'>
                                 <h2>{key.snippet.title}</h2>
                                 <p>{key.snippet.description}</p>
-                                <p>{key.id.videoId}</p>
                             </span>
                         </div>
                     )
                 })}
-                <div>
-                    {/* <Video videoID={this.state.id} /> */}
-                </div>
             </div>
         )
     }

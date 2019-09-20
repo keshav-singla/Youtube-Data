@@ -28,9 +28,7 @@ class Search extends React.Component {
         this.setState({
             list: serachApi.data.items,
         })
-        // this.props.history.push({ 
-        //     pathname: `/serach-query?=${this.state.search}`,
-        //     state: { detail: serachApi.data.items }})
+
     }               
 
 

@@ -1,5 +1,8 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
+import Search from './search';
+import '../styles/variable.css'
+
 
 class Video extends React.Component{
     constructor(props){
@@ -23,15 +26,21 @@ class Video extends React.Component{
         console.log(this.state.videoID);
         return(
             <div>
+                <Search />
+            <div className='videoContainer'>
                  <iframe 
-                    src={`https://www.youtube.com/embed/${this.state.videoID.params.id}`}
-                    allow='autoplay; encrypted-media'
+                    width="900" height="447"
+                    src={`https://www.youtube.com/embed/${this.state.videoID.params.id}?autoplay=1`}
+                    allow='autoplay'
                     allowFullScreen
                     title='video'>
                 </iframe>
             </div>
+            </div>
+
+            
         )
     }
 }
 
-export default withRouter (Video);
+export default withRouter(Video);
