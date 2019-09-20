@@ -3,7 +3,6 @@ import { withRouter } from 'react-router-dom'
 import Search from './search';
 import '../styles/variable.css'
 
-
 class Video extends React.Component{
     constructor(props){
         super(props)
@@ -14,9 +13,7 @@ class Video extends React.Component{
 
     componentDidMount(){
         console.log(this.props);
-        console.log();
 
-        localStorage.setItem('rememberMe', this.state.videoID.params.id);
         this.setState({
             videoID : this.props.match
         })

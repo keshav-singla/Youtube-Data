@@ -41,7 +41,6 @@ class Searchlist extends React.Component {
                                         alt="new"
                                     />
                                 </Link>
-
                             </span>
                             <span className='thumbnail'>
                                 <h2>{key.snippet.title}</h2>

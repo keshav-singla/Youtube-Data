@@ -4,7 +4,6 @@ import Searchlist from './searchList';
 import '../styles/search.css'
 import '../styles/variable.css'
 
-
 const KEY = 'AIzaSyBdXjGbMZ7Yd_W3digAhPLAjnKWACgL5Us';
 
 class Search extends React.Component {
@@ -18,20 +17,17 @@ class Search extends React.Component {
         }
     }
 
-
     handleChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
     }
 
     youtubeApi = async () => {
-        const serachApi = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${this.state.search}&key=${KEY} `)
+        const serachApi = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${this.state.search}&key=${KEY} `)
         this.setState({
             list: serachApi.data.items,
         })
 
     }               
-
-
 
     render() {
         // console.log(this.state.list);
