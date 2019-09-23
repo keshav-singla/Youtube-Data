@@ -1,12 +1,14 @@
 .container{
-    text-align: center;
+    text-align: left;
     background-color: rgb(255, 255, 255);
     /* height: 100em ; */
 }
 
 .searchContainer{
     padding-top: 20px;
-    padding-bottom: 40px;
+    padding-bottom: 20px;
+    text-align: center;
+
 }
 
 .searchList{
@@ -19,18 +21,38 @@
 
 .searchListContainer{
     display: grid;
-  grid-template-columns: auto auto;
-  padding: 10px;
-  text-align: left;
+    grid-template-columns: auto auto;
+    padding: 10px;
+    text-align: left;
 }
 
 .thumbnail{
     font-family:  'raleway';
-    padding: 20px;
+    /* padding: 20px; */
 }
 
 .videoContainer{
     display: flex;
     justify-content: center;
     
+}
+
+.mostPopularVideos{
+    display: table-cell;
+    grid-template-columns: auto auto;
+    padding: 30px;
+    text-align: left;
+}
+
+.homePageVideos{
+    background-color: rgb(245, 245, 245);
+    grid-template-columns: auto auto auto auto auto;
+    display: inline-grid ;
+    /* margin-left: 5%; */
+    /* margin-right: 2%; */
+
+}
+container.h2{
+    text-align: left;
+    padding-left: 5%;
 }

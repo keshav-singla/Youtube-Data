@@ -9,22 +9,20 @@ class Searchlist extends React.Component {
         this.state = {
             id: '',
             videoDescription: '',
-            list: []
+            list: props.location.state
         }
     }
-
-    componentWillReceiveProps(nextProps) {
-        this.setState({
-            list: nextProps.renderingList
-        })
-
+    
+    componentDidMount(){
+            this.setState({
+                list : this.props.location.state
+            })
     }
-
-
     render() {
+        console.log(this.state.list)
         return (
             <div className='searchList'>
-                {this.state.list.map((key, index) => {
+                {this.state.list.state.length > 0 && this.state.list.state.map((key, index) => {
 
                     console.log(key)
                     return (
@@ -39,6 +37,7 @@ class Searchlist extends React.Component {
                                     <img
                                         src={key.snippet.thumbnails.medium.url}
                                         alt="new"
+                                        
                                     />
                                 </Link>
                             </span>

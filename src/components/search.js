@@ -4,12 +4,15 @@ import Searchlist from './searchList';
 import '../styles/search.css'
 import '../styles/variable.css'
 import { withRouter, Link } from 'react-router-dom'
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button'
+import TextField from "@material-ui/core/TextField"
 
 
 const KEY = 'AIzaSyBdXjGbMZ7Yd_W3digAhPLAjnKWACgL5Us';
 
 class Search extends React.Component {
-    
+
     constructor() {
         super()
         this.state = {
@@ -20,13 +23,22 @@ class Search extends React.Component {
         }
     }
 
-   componentDidMount(){
-       axios.get(`https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&key=${KEY}`)
-        .then(res => {
-            const videos = res.data.items;
-            this.setState({ videos });
-        })
-   }
+    componentDidMount() {
+        axios.get(`https://www.googleapis.com/youtube/v3/videos?part=snippet&maxResults=10&chart=mostPopular&regionCode=in&key=${KEY}`)
+            .then(res => {
+                const videos = res.data.items;
+                this.setState({ videos });
+            })
+
+        axios.get(`https://www.googleapis.com/youtube/v3/videoCategories?part=snippet&maxResults=&regionCode=in&key=${KEY}`)
+            .then(res => {
+                const regionVideo = res.data.items;
+                this.setState({
+                    regionVideo
+                })
+            })
+    }
+
 
     handleChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
@@ -37,51 +49,95 @@ class Search extends React.Component {
         this.setState({
             list: serachApi.data.items,
         })
-
-    } 
-    
+        this.props.history.push(`/serach-query:${this.state.search}`,
+            { state: this.state.list }
+        );
+    }
 
     render() {
-        console.log(this.state.videos);
-        
+        console.log(this.state.regionVideo);
+
         return (
+
+            // Search bar and button
             <div className='container'>
                 <div className='searchContainer'>
-                    <input className="searchBar" type='text' placeholder='Search here' name='search' value={this.state.search} onChange={this.handleChange} />
+                    <input
+                        className="searchBar"
+                        id="hyv-search"
+                        type='search'
+                        placeholder='Search here'
+                        name='search'
+                        value={this.state.search}
+                        onChange={this.handleChange}
+                        autocomplete="off" />
                     <button className='searchButton' onClick={() => this.youtubeApi()} > Search </button>   <br />
                 </div>
                 {this.state.error}
-                <div className='searchList'>
-                {this.state.videos.map((key, index) => {
 
-                    console.log(key)
-                    return (
-                        <div className='searchListContainer'>
-                            <span className='thumbnail'>
-                                <Link
-                                    to={{
-                                        pathname: `/watch?=${key.id.videoId}`,
-                                        state: { fromDashboard: true }
-                                    }}
-                                >
-                                    <img
-                                        src={key.snippet.thumbnails.medium.url}
-                                        alt="new"
-                                    />
-                                </Link>
-                            </span>
-                            <span className='thumbnail'>
-                                <h2>{key.snippet.title}</h2>
-                                <p>{key.snippet.description}</p>
-                            </span>
-                        </div>
-                    )
-                })}
-            </div>
+                {/* Most Popular Videos list renderig using Api */}
+                    <span>Most Popular Videos</span>
+
+
+                <div className='homePageVideos'>
+                    {this.state.videos.map((key, index) => {
+                        console.log(key)
+                        return (
+                            <div className='mostPopularVideos'>
+                                <span className='thumbnail'>
+                                    <Link
+                                        to={{
+                                            pathname: `/watch?=${key.id}`,
+                                            state: { fromDashboard: true }
+                                        }}
+                                    >
+                                        <img
+                                            src={key.snippet.thumbnails.medium.url}
+                                            alt="new"
+                                        />
+                                    </Link>
+                                </span>
+                                <span className='thumbnail'>
+                                    <p>{key.snippet.title}</p>
+                                </span>
+                            </div>
+                        )
+                    })}
+
+                    {/* videos according to region */}
+
+                    {/* {this.state.regionVideo.map((key, index) => {
+                        console.log(key)
+                        return (
+                            <div className='mostPopularVideos'>
+                                <span className='thumbnail'>
+                                    <Link
+                                        to={{
+                                            pathname: `/watch?=${key.id}`,
+                                            state: { fromDashboard: true }
+                                        }}
+                                    >
+                                        <img
+                                            src={key.snippet.thumbnails.medium.url}
+                                            alt="new"
+                                        />
+                                    </Link>
+                                </span>
+                                <span className='thumbnail'>
+                                    <p>{key.snippet.title}</p>
+                                </span>
+                            </div>
+                        )
+                    })} */}
+
+
+                </div>
+
             </div>
         )
     }
 }
 
 export default Search;
-// GET https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&key=[YOUR_API_KEY] HTTP/1.1
+
+//GET https://www.googleapis.com/youtube/v3/videoCategories?part=snippet&regionCode=in&key=[YOUR_API_KEY] HTTP/1.1

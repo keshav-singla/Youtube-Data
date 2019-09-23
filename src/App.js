@@ -5,27 +5,32 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Search from './components/search';
 import Searchlist from './components/searchList';
 import Video from './components/video';
-class App extends React.Component{
-  constructor(){
+class App extends React.Component {
+  constructor() {
     super()
-    this.state={
+    this.state = {
     }
   }
 
-  componentDidMount(){
-    
+  componentDidMount() {
+
   }
 
-  render(){
+  render() {
     return (
       <div className="App">
-       <Router>
-       <Switch>
-         <Route exact path="/" component={Search}/>
-         <Route exact path="/serach-query:id" component={Searchlist} {...this.props}  />
-         <Route exact path="/watch?=:id" render={({ match }) => <Video match={match} {...this.props} />}/>
-       </Switch>
-       </Router>
+        <Router>
+          <Switch>
+            <Route exact path="/" component={Search} />
+            <Route exact path="/serach-query:id" component={Searchlist} {...this.props} />
+            <Route
+              path='/serach-query:id'
+              render={(props) => <Searchlist {...props} isAuthed={true} />}
+            />
+
+            <Route exact path="/watch?=:id" render={({ match }) => <Video match={match} {...this.props} />} />
+          </Switch>
+        </Router>
       </div>
     );
   }

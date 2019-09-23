@@ -23,7 +23,6 @@ class Video extends React.Component{
         console.log(this.state.videoID);
         return(
             <div>
-                <Search />
             <div className='videoContainer'>
                  <iframe 
                     width="900" height="447"
