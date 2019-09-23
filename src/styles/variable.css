@@ -32,9 +32,13 @@
 }
 
 .videoContainer{
+    grid-template-columns: auto auto;
+}
+
+.videoPlayerContainer{
     display: flex;
     justify-content: center;
-    
+    grid-template-columns: auto auto;  
 }
 
 .mostPopularVideos{
@@ -52,7 +56,11 @@
     /* margin-right: 2%; */
 
 }
-container.h2{
+.container.h2{
     text-align: left;
     padding-left: 5%;
+}
+
+.suggestionVideo{
+    display: flexbox
 }

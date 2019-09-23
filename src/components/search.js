@@ -19,7 +19,8 @@ class Search extends React.Component {
             search: '',
             videos: [],
             list: [],
-            error: ''
+            error: '',
+            regionVideo:[]
         }
     }
 
@@ -29,16 +30,7 @@ class Search extends React.Component {
                 const videos = res.data.items;
                 this.setState({ videos });
             })
-
-        axios.get(`https://www.googleapis.com/youtube/v3/videoCategories?part=snippet&maxResults=&regionCode=in&key=${KEY}`)
-            .then(res => {
-                const regionVideo = res.data.items;
-                this.setState({
-                    regionVideo
-                })
-            })
     }
-
 
     handleChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
@@ -62,7 +54,7 @@ class Search extends React.Component {
             // Search bar and button
             <div className='container'>
                 <div className='searchContainer'>
-                    <input
+                    <input onKeyDown ={() => this.youtubeApi()}
                         className="searchBar"
                         id="hyv-search"
                         type='search'
@@ -76,7 +68,7 @@ class Search extends React.Component {
                 {this.state.error}
 
                 {/* Most Popular Videos list renderig using Api */}
-                    <span>Most Popular Videos</span>
+                    <h2>Most Popular Videos</h2>
 
 
                 <div className='homePageVideos'>
@@ -104,33 +96,6 @@ class Search extends React.Component {
                         )
                     })}
 
-                    {/* videos according to region */}
-
-                    {/* {this.state.regionVideo.map((key, index) => {
-                        console.log(key)
-                        return (
-                            <div className='mostPopularVideos'>
-                                <span className='thumbnail'>
-                                    <Link
-                                        to={{
-                                            pathname: `/watch?=${key.id}`,
-                                            state: { fromDashboard: true }
-                                        }}
-                                    >
-                                        <img
-                                            src={key.snippet.thumbnails.medium.url}
-                                            alt="new"
-                                        />
-                                    </Link>
-                                </span>
-                                <span className='thumbnail'>
-                                    <p>{key.snippet.title}</p>
-                                </span>
-                            </div>
-                        )
-                    })} */}
-
-
                 </div>
 
             </div>
@@ -139,5 +104,3 @@ class Search extends React.Component {
 }
 
 export default Search;
-
-//GET https://www.googleapis.com/youtube/v3/videoCategories?part=snippet&regionCode=in&key=[YOUR_API_KEY] HTTP/1.1

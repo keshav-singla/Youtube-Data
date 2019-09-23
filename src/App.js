@@ -22,13 +22,15 @@ class App extends React.Component {
         <Router>
           <Switch>
             <Route exact path="/" component={Search} />
-            <Route exact path="/serach-query:id" component={Searchlist} {...this.props} />
             <Route
               path='/serach-query:id'
               render={(props) => <Searchlist {...props} isAuthed={true} />}
             />
 
-            <Route exact path="/watch?=:id" render={({ match }) => <Video match={match} {...this.props} />} />
+            <Route 
+              path="/watch?=:id" 
+              render={({ props }) => <Video {...props} isAuthed={true}  />} 
+              />
           </Switch>
         </Router>
       </div>

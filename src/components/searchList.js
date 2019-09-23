@@ -18,8 +18,9 @@ class Searchlist extends React.Component {
                 list : this.props.location.state
             })
     }
+
     render() {
-        console.log(this.state.list)
+        console.log(this.state.id)
         return (
             <div className='searchList'>
                 {this.state.list.state.length > 0 && this.state.list.state.map((key, index) => {
@@ -30,11 +31,14 @@ class Searchlist extends React.Component {
                             <span className='thumbnail'>
                                 <Link
                                     to={{
+                                        
+
+
                                         pathname: `/watch?=${key.id.videoId}`,
                                         state: { fromDashboard: true }
                                     }}
                                 >
-                                    <img
+                                    <img 
                                         src={key.snippet.thumbnails.medium.url}
                                         alt="new"
                                         
