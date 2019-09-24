@@ -1,15 +1,16 @@
 import React from 'react';
 import axios from 'axios';
-import Searchlist from './searchList';
 import '../styles/search.css'
 import '../styles/variable.css'
-import { withRouter, Link } from 'react-router-dom'
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button'
-import TextField from "@material-ui/core/TextField"
+import { Link } from 'react-router-dom'
+import JSONP from 'jsonp';
+
+
 
 
 const KEY = 'AIzaSyBdXjGbMZ7Yd_W3digAhPLAjnKWACgL5Us';
+const googleAutoSuggestURL = `//suggestqueries.google.com/complete/search?client=youtube&ds=yt&q=`;
+
 
 class Search extends React.Component {
 
@@ -20,9 +21,11 @@ class Search extends React.Component {
             videos: [],
             list: [],
             error: '',
-            regionVideo:[]
+            regionVideo: []
         }
     }
+
+
 
     componentDidMount() {
         axios.get(`https://www.googleapis.com/youtube/v3/videos?part=snippet&maxResults=10&chart=mostPopular&regionCode=in&key=${KEY}`)
@@ -33,8 +36,22 @@ class Search extends React.Component {
     }
 
     handleChange = (e) => {
+        const url = googleAutoSuggestURL + this.state.search,
+            self = this;
         this.setState({ [e.target.name]: e.target.value });
+        JSONP(url, function (error, data) {
+            if (error) {
+                console.log(error);
+            }
+            else {
+                const searchResults = data[1];
+                self.setState({
+                    options: searchResults
+                });
+            }
+        });
     }
+
 
     youtubeApi = async () => {
         const serachApi = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${this.state.search}&key=${KEY} `)
@@ -47,14 +64,14 @@ class Search extends React.Component {
     }
 
     render() {
-        console.log(this.state.regionVideo);
+        console.log(this.state.options);
 
         return (
 
             // Search bar and button
             <div className='container'>
                 <div className='searchContainer'>
-                    <input onKeyDown ={() => this.youtubeApi()}
+                    <input
                         className="searchBar"
                         id="hyv-search"
                         type='search'
@@ -62,13 +79,26 @@ class Search extends React.Component {
                         name='search'
                         value={this.state.search}
                         onChange={this.handleChange}
-                        autocomplete="off" />
+                        autocomplete="on" 
+                        />
                     <button className='searchButton' onClick={() => this.youtubeApi()} > Search </button>   <br />
                 </div>
+
+
+                {this.state.options ?
+                    <div className='suggestionList'>
+                        {this.state.options.map((i, index) => {
+                            return (
+                                <p>{i[0]}</p>
+                            )
+                        })
+                        }
+                    </div> : null}
+
                 {this.state.error}
 
                 {/* Most Popular Videos list renderig using Api */}
-                    <h2>Most Popular Videos</h2>
+                <h2>Most Popular Videos</h2>
 
 
                 <div className='homePageVideos'>

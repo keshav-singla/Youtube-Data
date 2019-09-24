@@ -64,3 +64,11 @@
 .suggestionVideo{
     display: flexbox
 }
+
+.suggestionList{
+    display: grid;
+    justify-content: center;
+    box-shadow: 0px -1px 6px;
+    width: 300px;
+
+}
