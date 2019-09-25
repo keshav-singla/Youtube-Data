@@ -19,7 +19,7 @@ class Search extends React.Component {
             list: [],
             error: '',
             regionVideo: [],
-            options : [],
+            options: [],
         }
     }
 
@@ -48,7 +48,7 @@ class Search extends React.Component {
         });
     }
 
-    handleClick= (input) => {
+    handleClick = (input) => {
         this.setState({
             search: input
         });
@@ -64,7 +64,6 @@ class Search extends React.Component {
 
                 {/* Most Popular Videos list renderig using Api */}
                 <h2>Most Popular Videos</h2>
-
 
                 <div className='homePageVideos'>
                     {this.state.videos.map((key, index) => {
@@ -91,7 +90,6 @@ class Search extends React.Component {
                         )
                     })}
                 </div>
-
             </div>
         )
     }

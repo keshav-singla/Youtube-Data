@@ -12,26 +12,21 @@ class App extends React.Component {
     }
   }
 
-  componentDidMount() {
-
-  }
-
   render() {
     return (
       <div className="App">
         <BrowserRouter>
-            <Switch>
-              <Route exact path="/" component={Search} />
-              <Route
-                path='/results/serach-query:id'
-                render={(props) => <Searchlist {...props} isAuthed={true} />}
-              />
-
-              <Route
-                path="/watch?=:id"
-                render={({ props }) => <Video {...props} isAuthed={true} />}
-              />
-            </Switch>
+          <Switch>
+            <Route exact path="/" component={Search} />
+            <Route
+              path='/results/serach-query:id'
+              render={(props) => <Searchlist {...props} isAuthed={true} />}
+            />
+            <Route
+              path="/watch?=:id"
+              render={({ props }) => <Video {...props} isAuthed={true} />}
+            />
+          </Switch>
         </BrowserRouter>
 
       </div>

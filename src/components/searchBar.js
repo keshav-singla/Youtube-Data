@@ -5,13 +5,11 @@ import '../styles/variable.css'
 import JSONP from 'jsonp';
 import { withRouter } from 'react-router-dom'
 
-
 const KEY = 'AIzaSyBdXjGbMZ7Yd_W3digAhPLAjnKWACgL5Us';
 const googleAutoSuggestURL = `//suggestqueries.google.com/complete/search?client=youtube&ds=yt&q=`;
 
-
-class SearchBar extends React.Component{
-    constructor(){
+class SearchBar extends React.Component {
+    constructor() {
         super()
         this.state = {
             search: '',
@@ -19,7 +17,7 @@ class SearchBar extends React.Component{
             list: [],
             error: '',
             regionVideo: [],
-            options : [],
+            options: [],
             showMe: true,
         }
     }
@@ -52,22 +50,22 @@ class SearchBar extends React.Component{
         );
     }
 
-    handleClick= (input) => {
+    handleClick = (input) => {
         this.setState({
             search: input,
-            showMe : false
+            showMe: false
         });
         this.youtubeApi(input)
     }
 
     handleClose = () => {
         this.setState({
-            options : []
+            options: []
         })
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <div className='container' >
                 <div className='searchContainer'>
                     <input
@@ -78,8 +76,8 @@ class SearchBar extends React.Component{
                         name='search'
                         value={this.state.search}
                         onChange={this.handleChange}
-                        autocomplete="off" 
-                        /> 
+                        autocomplete="off"
+                    />
                     <button className='searchButton' onClick={() => this.youtubeApi(this.state.search)} > Search </button>   <br />
                 </div>
 
@@ -87,14 +85,13 @@ class SearchBar extends React.Component{
                     <div className='suggestionList'>
                         {this.state.options.map((i, index) => {
                             return (
-                                this.state.showMe?
-                                <div className='suggestionListItem'> 
-                                    <p 
-                                    onClick={() => this.handleClick(i[0])} 
-                                    onBlur={() => this.handleClose}
-                                    
-                                    >{i[0]}</p>
-                                </div>: null
+                                this.state.showMe ?
+                                    <div className='suggestionListItem'>
+                                        <p
+                                            onClick={() => this.handleClick(i[0])}
+                                            onBlur={() => this.handleClose}
+                                        >{i[0]}</p>
+                                    </div> : null
                             )
                         })
                         }
@@ -106,4 +103,4 @@ class SearchBar extends React.Component{
     }
 }
 
-export default  withRouter(SearchBar) ;
+export default withRouter(SearchBar);

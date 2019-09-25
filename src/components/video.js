@@ -5,7 +5,6 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import SearchBar from './searchBar';
 
-
 const KEY = 'AIzaSyBdXjGbMZ7Yd_W3digAhPLAjnKWACgL5Us';
 
 class Video extends React.Component {
@@ -34,7 +33,7 @@ class Video extends React.Component {
         return (
             <div className='videoContainer'>
 
-<SearchBar />
+                <SearchBar />
 
                 <div className='videoPlayerContainer'>
                     <iframe
@@ -70,11 +69,8 @@ class Video extends React.Component {
                             </div>
                         )
                     })}
-
                 </div>
             </div>
-
-
         )
     }
 }

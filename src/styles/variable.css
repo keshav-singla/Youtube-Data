@@ -8,7 +8,6 @@
     padding-top: 20px;
     padding-bottom: 20px;
     text-align: center;
-
 }
 
 .searchList{
@@ -16,7 +15,6 @@
     align-content: flex-start;
     margin-left: 10%;
     margin-right: 10%;
-
 }
 
 .searchListContainer{
@@ -28,7 +26,7 @@
 
 .thumbnail{
     font-family:  'raleway';
-    padding: 20px;
+    padding: 10px;
 }
 
 .videoContainer{
@@ -44,7 +42,7 @@
 .mostPopularVideos{
     display: table-cell;
     grid-template-columns: auto auto;
-    padding: 30px;
+    margin: 2.5%;
     text-align: left;
 }
 
@@ -52,13 +50,10 @@
     background-color: rgb(245, 245, 245);
     grid-template-columns: auto auto auto auto auto;
     display: inline-grid ;
-    /* margin-left: 5%; */
-    /* margin-right: 2%; */
-
 }
+
 .container h2{
-    /* text-align: left; */
-    margin-left: 5%;
+    margin-left: 2.5%;
 }
 
 .suggestionVideo{
@@ -71,6 +66,7 @@
     justify-content: center;
     margin-left: 2.5%;
     width: 90%;
+    background-color: white;
 }
 
 .suggestionList:hover{

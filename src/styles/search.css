@@ -9,12 +9,7 @@
     background-position: 10px 10px; 
     background-repeat: no-repeat;
     padding: 10px 20px 10px 40px;
-    /* transition: width 0.4s ease-in-out; */
 }
-
-/* .searchBar:focus{
-    width: 25%;
-} */
 
 .searchButton{
     width: 100px;
@@ -25,6 +20,7 @@
     background-repeat: no-repeat;
     padding: 10px 20px 10px 20px;
 }
+
 .searchButton:hover {
     box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.068), 0 3px 3px 0 rgba(0, 0, 0, 0.075);
-  }
+}

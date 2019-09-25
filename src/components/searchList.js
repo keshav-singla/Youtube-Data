@@ -14,27 +14,29 @@ class Searchlist extends React.Component {
         }
     }
 
-    componentWillReceiveProps(nextProps){
+    componentWillReceiveProps(nextProps) {
         if (this.props.location.state !== nextProps.location.state) {
             this.setState({
-                list : nextProps.location.state
+                list: nextProps.location.state
             })
         }
     }
-        
-    componentDidMount(){
+
+    componentDidMount() {
         console.log(this.props.location);
-            this.setState({
-                list : this.props.location.state
-            })
+        this.setState({
+            list: this.props.location.state
+        })
     }
 
     render() {
         return (
             <div className='searchList'>
+                {/* Search bar and button with apis call */}
 
-                <SearchBar  />
-
+                <SearchBar />
+                
+                {/* searchList rendering */}
 
                 {this.state.list.state.length > 0 && this.state.list.state.map((key, index) => {
 
@@ -48,13 +50,13 @@ class Searchlist extends React.Component {
                                         state: { fromDashboard: true }
                                     }}
                                 >
-                                    <img 
+                                    <img
                                         src={key.snippet.thumbnails.medium.url}
                                         alt="new"
                                     />
                                 </Link>
                             </div >
-                            <div  className='thumbnail'>
+                            <div className='thumbnail'>
                                 <h2>{key.snippet.title}</h2>
                                 <p>{key.snippet.channelTitle}</p>
                                 <p>{key.snippet.description}</p>
