@@ -61,12 +61,19 @@
 }
 
 .suggestionList{
-    display: flex;      
+    /* display: flex;      
     flex-direction: column;
     justify-content: center;
     margin-left: 2.5%;
-    width: 90%;
+    width: 90%; */
+    min-width: 39%;
+    top: 13%;
+    position: fixed;
+    text-align: left;
+    left: 29%;
+    z-index: 2011;
     background-color: white;
+    padding-left: 20px; 
 }
 
 .suggestionList:hover{

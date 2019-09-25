@@ -66,7 +66,7 @@ class SearchBar extends React.Component {
 
     render() {
         return (
-            <div className='container' >
+            <div className='container'>
                 <div className='searchContainer'>
                     <input
                         className="searchBar"
@@ -78,7 +78,13 @@ class SearchBar extends React.Component {
                         onChange={this.handleChange}
                         autocomplete="off"
                     />
-                    <button className='searchButton' onClick={() => this.youtubeApi(this.state.search)} > Search </button>   <br />
+
+                    <button 
+                        className='searchButton' 
+                        onClick={() => this.youtubeApi(this.state.search)} 
+                    > 
+                        Search 
+                    </button>   <br />
                 </div>
 
                 {this.state.options ?
@@ -91,11 +97,12 @@ class SearchBar extends React.Component {
                                             onClick={() => this.handleClick(i[0])}
                                             onBlur={() => this.handleClose}
                                         >{i[0]}</p>
-                                    </div> : null
+                                    </div> 
+                                : null
                             )
-                        })
-                        }
-                    </div> : null}
+                        })}
+                    </div> : null
+                }
 
                 {this.state.error}
             </div>

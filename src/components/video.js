@@ -32,8 +32,11 @@ class Video extends React.Component {
         console.log(this.state.videoID);
         return (
             <div className='videoContainer'>
+                {/* Search bar and button with apis call */}
 
                 <SearchBar />
+
+                {/* Video playing */}
 
                 <div className='videoPlayerContainer'>
                     <iframe

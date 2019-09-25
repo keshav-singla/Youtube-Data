@@ -31,40 +31,46 @@ class Searchlist extends React.Component {
 
     render() {
         return (
-            <div className='searchList'>
-                {/* Search bar and button with apis call */}
+            <div>
+                <div>
+                    <SearchBar />
 
-                <SearchBar />
-                
-                {/* searchList rendering */}
+                </div>
+                <div className='searchList'>
+                    {/* Search bar and button with apis call */}
 
-                {this.state.list.state.length > 0 && this.state.list.state.map((key, index) => {
 
-                    console.log(key)
-                    return (
-                        <div className='searchListContainer'>
-                            <div className='thumbnailContainer'  >
-                                <Link
-                                    to={{
-                                        pathname: `/watch?=${key.id.videoId}`,
-                                        state: { fromDashboard: true }
-                                    }}
-                                >
-                                    <img
-                                        src={key.snippet.thumbnails.medium.url}
-                                        alt="new"
-                                    />
-                                </Link>
-                            </div >
-                            <div className='thumbnail'>
-                                <h2>{key.snippet.title}</h2>
-                                <p>{key.snippet.channelTitle}</p>
-                                <p>{key.snippet.description}</p>
-                            </div >
-                        </div>
-                    )
-                })}
+                    {/* searchList rendering */}
+
+                    {this.state.list.state.length > 0 && this.state.list.state.map((key, index) => {
+
+                        console.log(key)
+                        return (
+                            <div className='searchListContainer'>
+                                <div className='thumbnailContainer'  >
+                                    <Link
+                                        to={{
+                                            pathname: `/watch?=${key.id.videoId}`,
+                                            state: { fromDashboard: true }
+                                        }}
+                                    >
+                                        <img
+                                            src={key.snippet.thumbnails.medium.url}
+                                            alt="new"
+                                        />
+                                    </Link>
+                                </div >
+                                <div className='thumbnail'>
+                                    <h2>{key.snippet.title}</h2>
+                                    <p>{key.snippet.channelTitle}</p>
+                                    <p>{key.snippet.description}</p>
+                                </div >
+                            </div>
+                        )
+                    })}
+                </div>
             </div>
+            
         )
     }
 }
