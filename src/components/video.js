@@ -4,6 +4,7 @@ import Search from './search';
 import '../styles/variable.css'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import SearchBar from './searchBar';
 
 
 const KEY = 'AIzaSyBdXjGbMZ7Yd_W3digAhPLAjnKWACgL5Us';
@@ -16,8 +17,6 @@ class Video extends React.Component {
             recomendVideos: [],
         }
     }
-
-    
 
     componentDidMount() {
         this.setState({
@@ -35,6 +34,9 @@ class Video extends React.Component {
         console.log(this.state.videoID);
         return (
             <div className='videoContainer'>
+
+<SearchBar />
+
                 <div className='videoPlayerContainer'>
                     <iframe
                         width="900" height="447"

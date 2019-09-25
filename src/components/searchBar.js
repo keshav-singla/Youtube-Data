@@ -4,14 +4,15 @@ import '../styles/search.css'
 import '../styles/variable.css'
 import { Link } from 'react-router-dom'
 import JSONP from 'jsonp';
-import SearchBar from './searchBar';
+import { withRouter } from 'react-router-dom'
+
 
 const KEY = 'AIzaSyBdXjGbMZ7Yd_W3digAhPLAjnKWACgL5Us';
 const googleAutoSuggestURL = `//suggestqueries.google.com/complete/search?client=youtube&ds=yt&q=`;
 
-class Search extends React.Component {
 
-    constructor() {
+class SearchBar extends React.Component{
+    constructor(){
         super()
         this.state = {
             search: '',
@@ -21,16 +22,6 @@ class Search extends React.Component {
             regionVideo: [],
             options : [],
         }
-    }
-
-
-
-    componentDidMount() {
-        axios.get(`https://www.googleapis.com/youtube/v3/videos?part=snippet&maxResults=10&chart=mostPopular&regionCode=in&key=${KEY}`)
-            .then(res => {
-                const videos = res.data.items;
-                this.setState({ videos });
-            })
     }
 
     handleChange = (e) => {
@@ -50,15 +41,6 @@ class Search extends React.Component {
         });
     }
 
-
-    getItemValue = (item) => {
-        // You can obviously only return the Label or the component you need to show
-        // In this case we are going to show the value and the label that shows in the input
-        // something like "1 - Microsoft"
-        return `${item.value} - ${item.label}`;
-    }
-
-
     youtubeApi = async (input) => {
         const serachApi = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${input}&key=${KEY} `)
         this.setState({
@@ -77,13 +59,10 @@ class Search extends React.Component {
         this.youtubeApi(input)
     }
 
-    render() {
-        console.log(this.state.options);
-        return (
-
-            // Search bar and button
-            <div className='container'>
-                {/* <div className='searchContainer'>
+    render(){
+        return(
+            <div className='container' >
+                <div className='searchContainer'>
                     <input
                         className="searchBar"
                         id="hyv-search"
@@ -107,42 +86,10 @@ class Search extends React.Component {
                         }
                     </div> : null}
 
-                {this.state.error} */}
-                <SearchBar />
-
-                {/* Most Popular Videos list renderig using Api */}
-                <h2>Most Popular Videos</h2>
-
-
-                <div className='homePageVideos'>
-                    {this.state.videos.map((key, index) => {
-                        console.log(key)
-                        return (
-                            <div className='mostPopularVideos'>
-                                <span className='thumbnail'>
-                                    <Link
-                                        to={{
-                                            pathname: `/watch?=${key.id}`,
-                                            state: { fromDashboard: true }
-                                        }}
-                                    >
-                                        <img
-                                            src={key.snippet.thumbnails.medium.url}
-                                            alt="new"
-                                        />
-                                    </Link>
-                                </span>
-                                <span className='thumbnail'>
-                                    <p>{key.snippet.title}</p>
-                                </span>
-                            </div>
-                        )
-                    })}
-                </div>
-
+                {this.state.error}
             </div>
         )
     }
 }
 
-export default Search;
+export default  withRouter(SearchBar) ;

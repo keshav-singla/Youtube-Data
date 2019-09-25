@@ -2,6 +2,8 @@ import React from 'react'
 import 'video-react/dist/video-react.css';
 import '../styles/variable.css'
 import { withRouter, Link } from 'react-router-dom'
+import Search from './search';
+import SearchBar from './searchBar';
 
 class Searchlist extends React.Component {
     constructor(props) {
@@ -12,17 +14,29 @@ class Searchlist extends React.Component {
             list: props.location.state
         }
     }
-    
+
+    componentWillReceiveProps(nextProps){
+        if (this.props.location.state !== nextProps.location.state) {
+            this.setState({
+                list : nextProps.location.state
+            })
+        }
+    }
+        
     componentDidMount(){
+        console.log(this.props.location);
             this.setState({
                 list : this.props.location.state
             })
     }
 
     render() {
-        console.log(this.state.list)
         return (
             <div className='searchList'>
+
+                <SearchBar  />
+
+
                 {this.state.list.state.length > 0 && this.state.list.state.map((key, index) => {
 
                     console.log(key)
