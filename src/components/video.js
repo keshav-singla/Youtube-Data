@@ -23,7 +23,6 @@ class Video extends React.Component {
         this.setState({
             videoID: this.props.match
         })
-
         axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${this.state.videoID.params.id}&type=video&key=${KEY}`)
             .then(res => {
                 this.setState({
@@ -33,7 +32,7 @@ class Video extends React.Component {
     }
 
     render() {
-        console.log(this.state.recomendVideos);
+        console.log(this.state.videoID);
         return (
             <div className='videoContainer'>
                 <div className='videoPlayerContainer'>
@@ -54,7 +53,7 @@ class Video extends React.Component {
                                 <span className='thumbnail'>
                                     <Link
                                         to={{
-                                            pathname: `/watch?=${key.id}`,
+                                            pathname: `/watch?=${key.id.videoId}`,
                                             state: { fromDashboard: true }
                                         }}
                                     >

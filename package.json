@@ -6,19 +6,26 @@
   "dependencies": {
     "@material-ui/core": "^4.4.3",
     "@material-ui/icons": "^4.4.3",
+    "@syncfusion/ej2-react-dropdowns": "^17.2.49",
     "axios": "^0.19.0",
     "jsonp": "^0.2.1",
     "react": "^16.9.0",
+    "react-async-autocomplete": "^1.1.0",
+    "react-autocomplete": "^1.8.1",
     "react-autosuggest": "^9.4.3",
+    "react-bootstrap-typeahead": "^3.4.7",
     "react-dom": "^16.9.0",
     "react-player": "^1.12.0",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.1",
+    "react-select": "^2.0.0-beta.7",
     "react-typeahead": "^2.0.0-alpha.8",
     "react-typeahead-component2": "^0.10.2",
     "redux": "^4.0.4",
     "semantic-ui-react": "^0.88.1",
-    "video-react": "^0.14.1"
+    "string-template": "^1.0.0",
+    "video-react": "^0.14.1",
+    "youtube-finder": "^1.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

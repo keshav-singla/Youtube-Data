@@ -66,9 +66,9 @@
 }
 
 .suggestionList{
-    display: grid;
+    display: inline;
     justify-content: center;
     box-shadow: 0px -1px 6px;
-    width: 300px;
-
+    margin-right: 5%;
+    margin-left : 5%;
 }

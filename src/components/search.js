@@ -4,13 +4,13 @@ import '../styles/search.css'
 import '../styles/variable.css'
 import { Link } from 'react-router-dom'
 import JSONP from 'jsonp';
-
+import Select from 'react-select';
+import Autocomplete  from 'react-autocomplete';
 
 
 
 const KEY = 'AIzaSyBdXjGbMZ7Yd_W3digAhPLAjnKWACgL5Us';
 const googleAutoSuggestURL = `//suggestqueries.google.com/complete/search?client=youtube&ds=yt&q=`;
-
 
 class Search extends React.Component {
 
@@ -21,7 +21,8 @@ class Search extends React.Component {
             videos: [],
             list: [],
             error: '',
-            regionVideo: []
+            regionVideo: [],
+            options : [],
         }
     }
 
@@ -38,7 +39,7 @@ class Search extends React.Component {
     handleChange = (e) => {
         const url = googleAutoSuggestURL + this.state.search,
             self = this;
-        this.setState({ [e.target.name]: e.target.value });
+        this.setState({ search: e.target.value });
         JSONP(url, function (error, data) {
             if (error) {
                 console.log(error);
@@ -52,9 +53,33 @@ class Search extends React.Component {
         });
     }
 
+    
+    onSelect = (val) => {
+        this.setState({
+            search: val
+        });
 
-    youtubeApi = async () => {
-        const serachApi = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${this.state.search}&key=${KEY} `)
+        console.log("Option from 'database' selected : ", val);
+    }
+
+    renderItem = (item, isHighlighted) => { 
+        return (
+            <div style={{ background: isHighlighted ? 'lightgray' : 'white' }}>
+                {item.label}
+            </div>   
+        ); 
+    }
+
+    getItemValue = (item) => {
+        // You can obviously only return the Label or the component you need to show
+        // In this case we are going to show the value and the label that shows in the input
+        // something like "1 - Microsoft"
+        return `${item.value} - ${item.label}`;
+    }
+
+
+    youtubeApi = async (input) => {
+        const serachApi = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${input}&key=${KEY} `)
         this.setState({
             list: serachApi.data.items,
         })
@@ -63,9 +88,15 @@ class Search extends React.Component {
         );
     }
 
+    handleClick= (input) => {
+        this.setState({
+            search: input
+        });
+        this.youtubeApi(input)
+    }
+
     render() {
         console.log(this.state.options);
-
         return (
 
             // Search bar and button
@@ -80,16 +111,33 @@ class Search extends React.Component {
                         value={this.state.search}
                         onChange={this.handleChange}
                         autocomplete="on" 
-                        />
-                    <button className='searchButton' onClick={() => this.youtubeApi()} > Search </button>   <br />
-                </div>
+                        /> 
+                   
+                        {/* <Select 
+                            onChange={this.handleChange}
+                            value={this.state.search}
+                            type='search'
+                            placeholder='Search here'
+                            name='search'
+                        /> */}
 
+                        {/* <Autocomplete
+                            getItemValue={this.getItemValue}
+                            items={this.state.options}
+                            renderItem={this.renderItem}
+                            value={this.state.search}
+                            onChange={this.handleChange}
+                            onSelect={this.onSelect}
+                            placeholder='Search here'
+                        /> */}
+                    <button className='searchButton' onClick={() => this.youtubeApi(this.state.search)} > Search </button>   <br />
+                </div>
 
                 {this.state.options ?
                     <div className='suggestionList'>
                         {this.state.options.map((i, index) => {
                             return (
-                                <p>{i[0]}</p>
+                                <p onClick={() => this.handleClick(i[0])} >{i[0]}</p>
                             )
                         })
                         }
@@ -125,7 +173,6 @@ class Search extends React.Component {
                             </div>
                         )
                     })}
-
                 </div>
 
             </div>
