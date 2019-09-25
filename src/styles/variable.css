@@ -28,7 +28,7 @@
 
 .thumbnail{
     font-family:  'raleway';
-    /* padding: 20px; */
+    padding: 20px;
 }
 
 .videoContainer{
@@ -56,9 +56,9 @@
     /* margin-right: 2%; */
 
 }
-.container.h2{
-    text-align: left;
-    padding-left: 5%;
+.container h2{
+    /* text-align: left; */
+    margin-left: 5%;
 }
 
 .suggestionVideo{
@@ -66,9 +66,22 @@
 }
 
 .suggestionList{
-    display: inline;
+    display: flex;      
+    flex-direction: column;
     justify-content: center;
-    box-shadow: 0px -1px 6px;
-    margin-right: 5%;
-    margin-left : 5%;
+    margin-left: 2.5%;
+    width: 90%;
+}
+
+.suggestionList:hover{
+    cursor: pointer;
+}
+.suggestionListItem :hover{
+    background-color: rgb(248, 248, 248);
+    padding: 10px;
+}
+
+.thumbnailContainer{
+    width: 320px;
+    height: 197.81;
 }

@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import '../styles/search.css'
 import '../styles/variable.css'
-import { Link } from 'react-router-dom'
 import JSONP from 'jsonp';
 import { withRouter } from 'react-router-dom'
 
@@ -21,6 +20,7 @@ class SearchBar extends React.Component{
             error: '',
             regionVideo: [],
             options : [],
+            showMe: true,
         }
     }
 
@@ -54,9 +54,16 @@ class SearchBar extends React.Component{
 
     handleClick= (input) => {
         this.setState({
-            search: input
+            search: input,
+            showMe : false
         });
         this.youtubeApi(input)
+    }
+
+    handleClose = () => {
+        this.setState({
+            options : []
+        })
     }
 
     render(){
@@ -80,7 +87,14 @@ class SearchBar extends React.Component{
                     <div className='suggestionList'>
                         {this.state.options.map((i, index) => {
                             return (
-                                <p onClick={() => this.handleClick(i[0])} >{i[0]}</p>
+                                this.state.showMe?
+                                <div className='suggestionListItem'> 
+                                    <p 
+                                    onClick={() => this.handleClick(i[0])} 
+                                    onBlur={() => this.handleClose}
+                                    
+                                    >{i[0]}</p>
+                                </div>: null
                             )
                         })
                         }

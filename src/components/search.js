@@ -23,8 +23,6 @@ class Search extends React.Component {
         }
     }
 
-
-
     componentDidMount() {
         axios.get(`https://www.googleapis.com/youtube/v3/videos?part=snippet&maxResults=10&chart=mostPopular&regionCode=in&key=${KEY}`)
             .then(res => {
@@ -50,26 +48,6 @@ class Search extends React.Component {
         });
     }
 
-
-    getItemValue = (item) => {
-        // You can obviously only return the Label or the component you need to show
-        // In this case we are going to show the value and the label that shows in the input
-        // something like "1 - Microsoft"
-        return `${item.value} - ${item.label}`;
-    }
-
-
-    youtubeApi = async (input) => {
-        const serachApi = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${input}&key=${KEY} `)
-        this.setState({
-            list: serachApi.data.items,
-        })
-        console.log(this.props.history);
-        this.props.history.push(`/results/serach-query:${this.state.search}`,
-            { state: this.state.list }
-        );
-    }
-
     handleClick= (input) => {
         this.setState({
             search: input
@@ -80,34 +58,8 @@ class Search extends React.Component {
     render() {
         console.log(this.state.options);
         return (
-
             // Search bar and button
             <div className='container'>
-                {/* <div className='searchContainer'>
-                    <input
-                        className="searchBar"
-                        id="hyv-search"
-                        type='search'
-                        placeholder='Search here'
-                        name='search'
-                        value={this.state.search}
-                        onChange={this.handleChange}
-                        autocomplete="off" 
-                        /> 
-                    <button className='searchButton' onClick={() => this.youtubeApi(this.state.search)} > Search </button>   <br />
-                </div>
-
-                {this.state.options ?
-                    <div className='suggestionList'>
-                        {this.state.options.map((i, index) => {
-                            return (
-                                <p onClick={() => this.handleClick(i[0])} >{i[0]}</p>
-                            )
-                        })
-                        }
-                    </div> : null}
-
-                {this.state.error} */}
                 <SearchBar />
 
                 {/* Most Popular Videos list renderig using Api */}

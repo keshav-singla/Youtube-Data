@@ -2,7 +2,6 @@ import React from 'react'
 import 'video-react/dist/video-react.css';
 import '../styles/variable.css'
 import { withRouter, Link } from 'react-router-dom'
-import Search from './search';
 import SearchBar from './searchBar';
 
 class Searchlist extends React.Component {
@@ -42,7 +41,7 @@ class Searchlist extends React.Component {
                     console.log(key)
                     return (
                         <div className='searchListContainer'>
-                            <span className='thumbnail'>
+                            <div className='thumbnailContainer'  >
                                 <Link
                                     to={{
                                         pathname: `/watch?=${key.id.videoId}`,
@@ -54,11 +53,12 @@ class Searchlist extends React.Component {
                                         alt="new"
                                     />
                                 </Link>
-                            </span>
-                            <span className='thumbnail'>
+                            </div >
+                            <div  className='thumbnail'>
                                 <h2>{key.snippet.title}</h2>
+                                <p>{key.snippet.channelTitle}</p>
                                 <p>{key.snippet.description}</p>
-                            </span>
+                            </div >
                         </div>
                     )
                 })}

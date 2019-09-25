@@ -1,6 +1,5 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
-import Search from './search';
 import '../styles/variable.css'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
