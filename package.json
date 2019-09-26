@@ -8,6 +8,7 @@
     "@material-ui/icons": "^4.4.3",
     "@syncfusion/ej2-react-dropdowns": "^17.2.49",
     "axios": "^0.19.0",
+    "downshift": "^3.3.2",
     "jsonp": "^0.2.1",
     "react": "^16.9.0",
     "react-async-autocomplete": "^1.1.0",

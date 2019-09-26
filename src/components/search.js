@@ -6,7 +6,17 @@ import { Link } from 'react-router-dom'
 import JSONP from 'jsonp';
 import SearchBar from './searchBar';
 
-const KEY = 'AIzaSyBdXjGbMZ7Yd_W3digAhPLAjnKWACgL5Us';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import IconButton from '@material-ui/core/IconButton';
+import InfoIcon from '@material-ui/icons/Info';
+
+
+const KEY = 'AIzaSyBHkXrHJa0g8E8xwnXVne_wfCJc5hUdZ1U';
 const googleAutoSuggestURL = `//suggestqueries.google.com/complete/search?client=youtube&ds=yt&q=`;
 
 class Search extends React.Component {
@@ -24,7 +34,7 @@ class Search extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(`https://www.googleapis.com/youtube/v3/videos?part=snippet&maxResults=10&chart=mostPopular&regionCode=in&key=${KEY}`)
+        axios.get(`https://www.googleapis.com/youtube/v3/videos?part=snippet&maxResults=20&chart=mostPopular&regionCode=in&key=${KEY}`)
             .then(res => {
                 const videos = res.data.items;
                 this.setState({ videos });
@@ -58,39 +68,81 @@ class Search extends React.Component {
     render() {
         console.log(this.state.options);
         return (
-            // Search bar and button
-            <div className='container'>
-                <SearchBar />
+            < Grid container
+                maxWidth="xl"
+            // spacing={10}
+            >
+                <Grid
+                    item xs={12}
+                >
+                    {/* Search bar and button */}
+                    <SearchBar />
+                </Grid>
 
-                {/* Most Popular Videos list renderig using Api */}
-                <h2>Most Popular Videos</h2>
+                <Grid
+                    item xs={2}
+                    className='homePageVideos'
+                >
 
-                <div className='homePageVideos'>
-                    {this.state.videos.map((key, index) => {
-                        console.log(key)
-                        return (
-                            <div className='mostPopularVideos'>
-                                <span className='thumbnail'>
-                                    <Link
-                                        to={{
-                                            pathname: `/watch?=${key.id}`,
-                                            state: { fromDashboard: true }
-                                        }}
-                                    >
-                                        <img
-                                            src={key.snippet.thumbnails.medium.url}
-                                            alt="new"
+                </Grid>
+
+
+
+                <Grid
+                    item xs={10}
+                    className='xyz'
+
+                >
+                    <GridList
+                        cellHeight={180}
+                        className='gridList'
+                    >
+                        <GridListTile key="header" cols={2} style={{ height: 'auto' }}>
+                            <ListSubheader component="div">Most Popular Videos</ListSubheader>
+                        </GridListTile>
+
+                        {this.state.videos.map((key, index) => {
+                            // console.log(key)
+                            return (
+                                <Grid
+                                    item xs={3}
+                                    className='mostPopularVideos'
+                                    spacing={5}
+                                >
+                                    <GridListTile key={key.snippet.thumbnails.medium.url}>
+                                        <Link
+                                            to={{
+                                                pathname: `/watch?=${key.id}`,
+                                                state: { fromDashboard: true }
+                                            }}
+                                        >
+                                            <img
+                                                src={key.snippet.thumbnails.medium.url}
+                                                alt="new"
+                                            />
+                                        </Link>
+                                        <GridListTileBar
+                                            title={key.snippet.title}
                                         />
-                                    </Link>
-                                </span>
-                                <span className='thumbnail'>
-                                    <p>{key.snippet.title}</p>
-                                </span>
-                            </div>
-                        )
-                    })}
-                </div>
-            </div>
+
+                                    </GridListTile>
+
+
+                                </Grid >
+                            )
+                        })}
+                    </GridList>
+                </Grid>
+
+
+
+
+
+
+            </Grid>
+
+
+
         )
     }
 }

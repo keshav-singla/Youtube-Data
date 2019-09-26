@@ -1,14 +1,17 @@
 .searchBar{
-    width: 40%;
-    box-sizing: border-box;
+    width: 60%;
     border: 1px solid rgb(212, 212, 212);
-    border-radius: 8px 0px 0px 8px;
-    font-size: 16px;
+    border-radius: 5px 0px 0px 5px;
     background-color: white;
     background-image: url('search.png'); 
-    background-position: 10px 10px; 
+    background-position: 12px 10px; 
     background-repeat: no-repeat;
-    padding: 10px 20px 10px 40px;
+    padding: 10px 15px 10px 45px !important ;
+    font-size: 15px;
+    justify-content: center;
+}
+.youTubeIcon{
+  background-image: url('youtube.svg'); 
 }
 
 .searchButton{
@@ -24,3 +27,61 @@
 .searchButton:hover {
     box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.068), 0 3px 3px 0 rgba(0, 0, 0, 0.075);
 }
+
+.root{
+    flex-grow:1;
+    /* justify-content: center */
+}
+
+.title {
+    flex-grow: 1;
+    display: 'block';
+  }
+
+  .search {
+    /* margin-left: 23%;
+    margin-right: 30%;
+    width: 40%; */
+    justify-content: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .search:hover{
+    background-color: white, 0.25;
+
+  }
+  .searchIcon{
+    width: 7;
+    height: '100%';
+    position: 'absolute';
+    pointer-events: 'none';
+    display: 'flex';
+    align-items: 'center';
+    justify-content: 'center';
+    background-image: url('search.png'); 
+    background-position: 10px 10px; 
+
+  }
+.xyz{
+    display: 'flex';
+    flex-wrap: 'wrap';
+    justify-content: 'space-around';
+    overflow: 'hidden';
+    background-color: rgb(235, 235, 235);
+    padding: 65px 0px 0px 0px !important ; 
+}
+ 
+
+.gridList{
+  width: 500;
+  height: 450;
+}
+/* 
+gridList: {
+  width: 500,
+  height: 450,
+},
+icon: {
+  color: 'rgba(255, 255, 255, 0.54)',
+}, */
