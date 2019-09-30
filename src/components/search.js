@@ -70,7 +70,6 @@ class Search extends React.Component {
         return (
             < Grid container
                 maxWidth="xl"
-            // spacing={10}
             >
                 <Grid
                     item xs={12}
@@ -85,9 +84,7 @@ class Search extends React.Component {
                 >
 
                 </Grid>
-
-
-
+                
                 <Grid
                     item xs={10}
                     className='xyz'
@@ -124,25 +121,13 @@ class Search extends React.Component {
                                         <GridListTileBar
                                             title={key.snippet.title}
                                         />
-
                                     </GridListTile>
-
-
                                 </Grid >
                             )
                         })}
                     </GridList>
                 </Grid>
-
-
-
-
-
-
             </Grid>
-
-
-
         )
     }
 }

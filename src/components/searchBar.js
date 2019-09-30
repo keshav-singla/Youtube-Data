@@ -21,7 +21,6 @@ import Grid from '@material-ui/core/Grid';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import Icon from '@material-ui/core/Icon';
 import SvgIcon from '@material-ui/core/SvgIcon';
-// import Downshift from 'downshift';
 import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import Chip from '@material-ui/core/Chip';
@@ -66,7 +65,7 @@ class SearchBar extends React.Component {
     }
 
     youtubeApi = async (input) => {
-        const serachApi = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${input}&key=${KEY} `)
+        const serachApi = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${input}&key=${KEY}`)
         this.setState({
             list: serachApi.data.items,
         })
@@ -91,12 +90,9 @@ class SearchBar extends React.Component {
     }
 
     render() {
-
         return (
-
-
             <div className='root'>
-                <AppBar style={{ backgroundColor: '#009FF5', }} >
+                <AppBar style={{ backgroundColor: '#009FF5' }} >
                     <Grid container >
 
                         <Grid item xs={3}>
@@ -134,7 +130,7 @@ class SearchBar extends React.Component {
                                 autocomplete="off"
                             />
 
-                           
+
 
                             <button
                                 className='searchButton'
@@ -151,7 +147,7 @@ class SearchBar extends React.Component {
                                                 <div className='suggestionListItem'>
                                                     <p
                                                         onClick={() => this.handleClick(i[0])}
-                                                    // onBlur={() => this.handleClose}
+                                                        onBlur={() => this.handleClose}
                                                     >{i[0]}</p>
                                                 </div>
                                                 : null
@@ -159,8 +155,6 @@ class SearchBar extends React.Component {
                                     })}
                                 </div> : null
                             }
-
-                            {this.state.error}
                         </Grid>
 
                         <Grid item xs={3}>

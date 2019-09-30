@@ -68,8 +68,8 @@
     flex-wrap: 'wrap';
     justify-content: 'space-around';
     overflow: 'hidden';
-    background-color: rgb(235, 235, 235);
-    padding: 65px 0px 0px 0px !important ; 
+    background-color: rgb(241, 241, 241);
+    padding: 67px 0px 0px 0px !important ; 
 }
  
 
@@ -77,11 +77,3 @@
   width: 500;
   height: 450;
 }
-/* 
-gridList: {
-  width: 500,
-  height: 450,
-},
-icon: {
-  color: 'rgba(255, 255, 255, 0.54)',
-}, */
