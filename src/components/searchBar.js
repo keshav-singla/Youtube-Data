@@ -4,34 +4,15 @@ import '../styles/search.css'
 import '../styles/variable.css'
 import JSONP from 'jsonp';
 import { withRouter } from 'react-router-dom'
-
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
-import { fade, makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import AddIcon from '@material-ui/icons/Add';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import YouTubeIcon from '@material-ui/icons/YouTube';
 import Icon from '@material-ui/core/Icon';
-import SvgIcon from '@material-ui/core/SvgIcon';
-import Popper from '@material-ui/core/Popper';
-import MenuItem from '@material-ui/core/MenuItem';
-import Chip from '@material-ui/core/Chip';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import Downshift from 'downshift';
-
 
 const KEY = 'AIzaSyBHkXrHJa0g8E8xwnXVne_wfCJc5hUdZ1U';
 const googleAutoSuggestURL = `//suggestqueries.google.com/complete/search?client=youtube&ds=yt&q=`;
-
 
 class SearchBar extends React.Component {
     constructor() {
@@ -99,7 +80,6 @@ class SearchBar extends React.Component {
                             <Toolbar>
                                 <IconButton
                                     edge="start"
-                                    // className={classes.menuButton}
                                     color="inherit"
                                     aria-label="open drawer"
                                 >
@@ -107,7 +87,6 @@ class SearchBar extends React.Component {
                                 </IconButton>
                                 <Icon className="youTubeIcon" color="secondary" />
                             </Toolbar>
-
                         </Grid>
 
                         <Grid
@@ -119,7 +98,6 @@ class SearchBar extends React.Component {
                         >
                             <input
                                 className="searchBar"
-                                // id="outlined-search"
                                 type="search"
                                 placeholder='Search here'
                                 name='search'
@@ -129,9 +107,7 @@ class SearchBar extends React.Component {
                                 onChange={this.handleChange}
                                 autocomplete="off"
                             />
-
-
-
+                            
                             <button
                                 className='searchButton'
                                 onClick={() => this.youtubeApi(this.state.search)}
@@ -148,7 +124,9 @@ class SearchBar extends React.Component {
                                                     <p
                                                         onClick={() => this.handleClick(i[0])}
                                                         onBlur={() => this.handleClose}
-                                                    >{i[0]}</p>
+                                                    >
+                                                        {i[0]}
+                                                    </p>
                                                 </div>
                                                 : null
                                         )

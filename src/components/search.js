@@ -5,16 +5,11 @@ import '../styles/variable.css'
 import { Link } from 'react-router-dom'
 import JSONP from 'jsonp';
 import SearchBar from './searchBar';
-
-import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
-import IconButton from '@material-ui/core/IconButton';
-import InfoIcon from '@material-ui/icons/Info';
-
 
 const KEY = 'AIzaSyBHkXrHJa0g8E8xwnXVne_wfCJc5hUdZ1U';
 const googleAutoSuggestURL = `//suggestqueries.google.com/complete/search?client=youtube&ds=yt&q=`;
@@ -68,28 +63,17 @@ class Search extends React.Component {
     render() {
         console.log(this.state.options);
         return (
-            < Grid container
-                maxWidth="xl"
-            >
-                <Grid
-                    item xs={12}
-                >
+            < Grid container maxWidth="xl">
+                <Grid item xs={12}>
                     {/* Search bar and button */}
                     <SearchBar />
                 </Grid>
 
-                <Grid
-                    item xs={2}
-                    className='homePageVideos'
-                >
+                <Grid item xs={2} className='homePageVideos'>
 
                 </Grid>
                 
-                <Grid
-                    item xs={10}
-                    className='xyz'
-
-                >
+                <Grid item xs={10} className='xyz'>
                     <GridList
                         cellHeight={180}
                         className='gridList'

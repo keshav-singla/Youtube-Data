@@ -3,20 +3,10 @@ import 'video-react/dist/video-react.css';
 import '../styles/variable.css'
 import { withRouter, Link } from 'react-router-dom'
 import SearchBar from './searchBar';
-
-import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import IconButton from '@material-ui/core/IconButton';
-import InfoIcon from '@material-ui/icons/Info';
 import { Paper } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from "@material-ui/core/ButtonBase";
-
-
 
 class Searchlist extends React.Component {
     constructor(props) {
@@ -64,17 +54,18 @@ class Searchlist extends React.Component {
 
                         <Grid
                             item xs={10}
-                        className='xyz'
+                            className='xyz'
                         >
-                            {/* <div className='searchList'> */}
-                            {/* searchList rendering */}
-
                             {this.state.list.state.length > 0 && this.state.list.state.map((key, index) => {
 
                                 console.log(key)
                                 return (
                                     <Grid container spacing={4}>
 
+                                        <Grid item xs={1}>
+
+                                        </Grid>
+                                        
                                         <Grid item xs={3} >
                                             <ButtonBase>
                                                 <Link
@@ -89,10 +80,9 @@ class Searchlist extends React.Component {
                                                     />
                                                 </Link>
                                             </ButtonBase>
-
                                         </Grid>
 
-                                        <Grid item xs={7} container direction="column" spacing={2}>
+                                        <Grid item xs={5} container direction="column" spacing={2}>
                                             <Grid item xs>
                                                 <Typography gutterBottom variant="subtitle1">
                                                     {key.snippet.title}
@@ -104,7 +94,6 @@ class Searchlist extends React.Component {
                                                     {key.snippet.description}
                                                 </Typography>
                                             </Grid>
-
                                         </Grid>
                                     </Grid>
                                 )
@@ -113,8 +102,6 @@ class Searchlist extends React.Component {
                     </Grid>
                 </Paper>
             </div>
-
-
         )
     }
 }
