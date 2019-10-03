@@ -10,6 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Grid from '@material-ui/core/Grid';
 import Icon from '@material-ui/core/Icon';
+import { Box } from '@material-ui/core';
 
 const KEY = 'AIzaSyBHkXrHJa0g8E8xwnXVne_wfCJc5hUdZ1U';
 const googleAutoSuggestURL = `//suggestqueries.google.com/complete/search?client=youtube&ds=yt&q=`;
@@ -107,13 +108,16 @@ class SearchBar extends React.Component {
                                 onChange={this.handleChange}
                                 autocomplete="off"
                             />
-                            
-                            <button
-                                className='searchButton'
-                                onClick={() => this.youtubeApi(this.state.search)}
-                            >
-                                Search
+
+                            <Box display={{ xs: 'none', sm: 'none', md: 'block' }} m={1}>
+                                <button
+                                    className='searchButton'
+                                    onClick={() => this.youtubeApi(this.state.search)}
+                                >
+                                    Search
                             </button>
+                            </Box>
+
 
                             {this.state.options ?
                                 <div className='suggestionList'>

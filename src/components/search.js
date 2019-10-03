@@ -79,11 +79,11 @@ class Search extends React.Component {
                         className='gridList'
                     >
                         <GridListTile key="header" cols={2} style={{ height: 'auto' }}>
-                            <ListSubheader component="div">Most Popular Videos</ListSubheader>
+                            <ListSubheader component="div"> Most Popular Videos </ListSubheader>
                         </GridListTile>
 
                         {this.state.videos.map((key, index) => {
-                            // console.log(key)
+                            console.log(key)
                             return (
                                 <Grid
                                     item xs={3}
