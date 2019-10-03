@@ -17,6 +17,7 @@ class Searchlist extends React.Component {
             list: props.location.state
         }
     }
+    
 
     componentWillReceiveProps(nextProps) {
         if (this.props.location.state !== nextProps.location.state) {
@@ -62,7 +63,7 @@ class Searchlist extends React.Component {
 
                                 console.log(key)
                                 return (
-                                    <Grid container spacing={16}>
+                                    <Grid container spacing={16} style={{padding:'20px'}} >
 
                                         <Grid item xs={1}>
 
@@ -77,7 +78,7 @@ class Searchlist extends React.Component {
                                                     }}
                                                 >
                                                     <img
-                                                        src={key.snippet.thumbnails.high.url}
+                                                        src={key.snippet.thumbnails.medium.url}
                                                         alt="new"
                                                     />
                                                 </Link>
@@ -89,7 +90,7 @@ class Searchlist extends React.Component {
 
                                         <Grid item xs={12} sm md container >
 
-                                            <Grid item xs container direction="column" spacing={16} style={{ margin:'20px' }} >
+                                            {/* <Grid item xs container direction="column" spacing={16}  > */}
                                                 <Grid item xs={1}>
 
                                                 </Grid>
@@ -104,7 +105,7 @@ class Searchlist extends React.Component {
                                                         {key.snippet.description}
                                                     </Typography>
                                                 </Grid>
-                                            </Grid>
+                                            {/* </Grid> */}
 
                                         </Grid>
 

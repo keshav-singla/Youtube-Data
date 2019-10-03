@@ -60,18 +60,23 @@ class SearchBar extends React.Component {
     handleClick = (input) => {
         this.setState({
             search: input,
-            showMe: false
+            // showMe: false
         });
         this.youtubeApi(input)
-    }
-
-    handleClose = () => {
         this.setState({
             options: []
         })
     }
 
+    // handleClose = () => {
+    //     this.setState({
+    //         options: []
+    //     })
+    // }
+
     render() {
+        console.log(this.state.options + 'hhghg');
+        
         return (
             <div className='root'>
                 <AppBar style={{ backgroundColor: '#009FF5' }} >

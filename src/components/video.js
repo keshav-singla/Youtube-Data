@@ -39,6 +39,14 @@ class Video extends React.Component {
             })
     }
 
+    componentDidUpdate(prevProps, nextState){
+        console.log(nextState.videoID);
+        console.log(this.state.videoID);
+        // if (this.state.videoID.params.id!==nextState.videoID.params.id){
+        //         console.log("harsh ")
+        // }
+    }
+
     render() {
         console.log(this.state.videoInfo && this.state.videoInfo.title);
         return (
@@ -88,7 +96,7 @@ class Video extends React.Component {
                                             <Link
                                                 to={{
                                                     pathname: `/watch?=${key.id.videoId}`,
-                                                    state: { fromDashboard: true }
+                                                    // state: { fromDashboard: true }
                                                 }}
                                             >
                                                 <img

@@ -8,20 +8,14 @@ import SearchBar from './searchBar';
 import Grid from '@material-ui/core/Grid';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
-import { withStyles } from '@material-ui/styles';
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
-import { Paper } from '@material-ui/core';
 
 
 const KEY = 'AIzaSyBHkXrHJa0g8E8xwnXVne_wfCJc5hUdZ1U';
-const styles = {
-    root: {
-        backgroundColor: 'red',
-    },
-};
+const googleAutoSuggestURL = `//suggestqueries.google.com/complete/search?client=youtube&ds=yt&q=`;
+
 
 class Search extends React.Component {
 
@@ -44,6 +38,40 @@ class Search extends React.Component {
                 this.setState({ videos });
             })
     }
+
+    handleChange = (e) => {
+        const url = googleAutoSuggestURL + this.state.search,
+            self = this;
+        this.setState({ search: e.target.value });
+        JSONP(url, function (error, data) {
+            if (error) {
+                console.log(error);
+            }
+            else {
+                const searchResults = data[5];
+                self.setState({
+                    options: searchResults
+                });
+            }
+        });
+    }
+
+    handleClick = (input) => {
+        this.setState({
+            search: input,
+            showMe: false
+        });
+        this.youtubeApi(input)
+        this.setState({
+            options: []
+        })
+    }
+
+    // handleClose = () => {
+    //     this.setState({
+    //         options: []
+    //     })
+    // }
 
     Media = (props) => {
         return (
@@ -112,56 +140,10 @@ class Search extends React.Component {
                 {/* <Grid container wrap="nowrap" > */}
                     {this.Media()}
                 {/* </Grid> */}
-
-
-
-                {/* <Grid item xs={2} className='homePageVideos'>
-
-                </Grid>
-
-                <Grid item xs={10} className='xyz'>
-                    <GridList
-                        cellHeight={180}
-                        className='gridList'
-                    >
-                        <GridListTile key="header" cols={2} style={{ height: 'auto' }}>
-                            <ListSubheader component="div"> Most Popular Videos </ListSubheader>
-                        </GridListTile>
-
-
-                            {this.state.videos.map((key, index) => {
-                                console.log(key)
-                                return (
-                                    <Grid
-                                        item xs={3}
-                                        // className='mostPopularVideos'
-                                        spacing={5}
-                                    >
-                                        <GridListTile key={key.snippet.thumbnails.medium.url}>
-                                            <Link
-                                                to={{
-                                                    pathname: `/watch?=${key.id}`,
-                                                    state: { fromDashboard: true }
-                                                }}
-                                            >
-                                                <img
-                                                    src={key.snippet.thumbnails.medium.url}
-                                                    alt="new"
-                                                />
-                                            </Link>
-                                            <GridListTileBar
-                                                title={key.snippet.title}
-                                            />
-                                        </GridListTile>
-                                    </Grid >
-                                )
-                            })}
-                    </GridList>
-                </Grid> */}
             </Grid>
         )
     }
 }
 
 
-export default withStyles(styles)(Search);
+export default Search;
