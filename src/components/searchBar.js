@@ -100,7 +100,7 @@ class SearchBar extends React.Component {
                             <input
                                 className="searchBar"
                                 type="search"
-                                placeholder='Search here'
+                                placeholder='Search'
                                 name='search'
                                 margin="normal"
                                 variant="outlined"

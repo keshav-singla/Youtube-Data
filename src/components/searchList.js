@@ -39,7 +39,6 @@ class Searchlist extends React.Component {
                 <Paper>
                     <Grid
                         container
-                        // maxWidth="xl"
                         spacing={3}
                     >
                         {/* Search bar and button */}
@@ -49,75 +48,70 @@ class Searchlist extends React.Component {
                         </Grid>
 
 
-                        {/* <Grid container spacing={5} > */}
 
-                            <Grid
-                                // className='homePageVideos' 
-                                item xs={2}
-                            >
-                                Hello
-                            </Grid>
+                        <Grid
+                            item xs={2}
+                        >
+                        </Grid>
 
-                            <Grid
-                                item
-                                // className='xyz'
-                            >
-                                {this.state.list.state.length > 0 && this.state.list.state.map((key, index) => {
+                        <Grid
+                            item
+                            className='xyz'
+                        >
+                            {this.state.list.state.length > 0 && this.state.list.state.map((key, index) => {
 
-                                    console.log(key)
-                                    return (
-                                        <Grid container spacing={16}>
+                                console.log(key)
+                                return (
+                                    <Grid container spacing={16}>
 
-                                            <Grid item xs={1}>
+                                        <Grid item xs={1}>
 
-                                            </Grid>
+                                        </Grid>
 
-                                            <Grid item >
-                                                <ButtonBase>
-                                                    <Link
-                                                        to={{
-                                                            pathname: `/watch?=${key.id.videoId}`,
-                                                            state: { fromDashboard: true }
-                                                        }}
-                                                    >
-                                                        <img
-                                                            src={key.snippet.thumbnails.medium.url}
-                                                            alt="new"
-                                                        />
-                                                    </Link>
-                                                </ButtonBase>
-                                            </Grid>
-                                            <Grid item xs={1}>
+                                        <Grid item >
+                                            <ButtonBase>
+                                                <Link
+                                                    to={{
+                                                        pathname: `/watch?=${key.id.videoId}`,
+                                                        state: { fromDashboard: true }
+                                                    }}
+                                                >
+                                                    <img
+                                                        src={key.snippet.thumbnails.high.url}
+                                                        alt="new"
+                                                    />
+                                                </Link>
+                                            </ButtonBase>
+                                        </Grid>
+                                        <Grid item xs={1}>
 
-                                            </Grid>
+                                        </Grid>
 
-                                            <Grid item xs={12} sm md container >
+                                        <Grid item xs={12} sm md container >
 
-                                                <Grid item xs container direction="column" spacing={16}>
+                                            <Grid item xs container direction="column" spacing={16} style={{ margin:'20px' }} >
                                                 <Grid item xs={1}>
 
-</Grid>
-                                                    <Grid item xs spacing={16}>
-                                                        <Typography gutterBottom variant="subtitle1">
-                                                            {key.snippet.title}
-                                                        </Typography>
-                                                        <Typography variant="body2" gutterBottom>
-                                                            {key.snippet.channelTitle}
-                                                        </Typography>
-                                                        <Typography variant="body2" color="textSecondary">
-                                                            {key.snippet.description}
-                                                        </Typography>
-                                                    </Grid>
                                                 </Grid>
-
+                                                <Grid item xs spacing={4} style={{ margin:'20px' }}>
+                                                    <Typography gutterBottom variant="subtitle1">
+                                                        {key.snippet.title}
+                                                    </Typography>
+                                                    <Typography variant="body2" gutterBottom>
+                                                        {key.snippet.channelTitle}
+                                                    </Typography>
+                                                    <Typography variant="body2" color="textSecondary">
+                                                        {key.snippet.description}
+                                                    </Typography>
+                                                </Grid>
                                             </Grid>
 
                                         </Grid>
-                                    )
-                                })}
-                            </Grid>
-                        {/* </Grid> */}
 
+                                    </Grid>
+                                )
+                            })}
+                        </Grid>
 
                     </Grid>
                 </Paper>

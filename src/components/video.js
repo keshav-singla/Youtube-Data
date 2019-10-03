@@ -4,6 +4,10 @@ import '../styles/variable.css'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import SearchBar from './searchBar';
+import { Grid, ButtonBase, Paper } from '@material-ui/core'
+import Typography from '@material-ui/core/Typography';
+
+
 
 const KEY = 'AIzaSyBHkXrHJa0g8E8xwnXVne_wfCJc5hUdZ1U';
 
@@ -26,53 +30,97 @@ class Video extends React.Component {
                     recomendVideos: res.data.items
                 })
             })
+
+        axios.get(`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${this.state.videoID.params.id}&key=${KEY}`)
+            .then(res => {
+                this.setState({
+                    videoInfo: res.data.items[0].snippet
+                })
+            })
     }
 
     render() {
-        console.log(this.state.videoID);
+        console.log(this.state.videoInfo && this.state.videoInfo.title);
         return (
-            <div className='videoContainer'>
-                {/* Search bar and button with apis call */}
 
-                <SearchBar />
+            <div>
+                    <Grid conatiner spacing={3}>
 
-                {/* Video playing */}
+                        <Grid item xs={12}>
+                            <SearchBar />
+                        </Grid>
 
-                <div className='videoPlayerContainer'>
-                    <iframe
-                        width="900" height="447"
-                        src={`https://www.youtube.com/embed/${this.state.videoID.params.id}?autoplay=1`}
-                        allow='autoplay'
-                        allowFullScreen
-                        title='video'>
-                    </iframe>
-                </div>
+                        <Grid item xs={3} md={3} ls={3}>
 
-                <div className='suggestionVideo'>
-                    {this.state.recomendVideos.map((key, index) => {
-                        console.log(key)
-                        return (
-                            <div className='mostPopularVideos'>
-                                <span className='thumbnail'>
-                                    <Link
-                                        to={{
-                                            pathname: `/watch?=${key.id.videoId}`,
-                                            state: { fromDashboard: true }
-                                        }}
-                                    >
-                                        <img
-                                            src={key.snippet.thumbnails.medium.url}
-                                            alt="new"
-                                        />
-                                    </Link>
-                                </span>
-                                <span className='thumbnail'>
-                                    <p>{key.snippet.title}</p>
-                                </span>
-                            </div>
-                        )
-                    })}
-                </div>
+                        </Grid>
+
+
+                        <Grid item xs={6} className='xyz'>
+                                <iframe
+                                    width="900" height="447"
+                                    src={`https://www.youtube.com/embed/${this.state.videoID.params.id}?autoplay=1`}
+                                    allow='autoplay'
+                                    allowFullScreen
+                                    title='video'>
+                                </iframe>
+
+                            <h2>
+                                {this.state.videoInfo && this.state.videoInfo.title}
+                            </h2>
+                        </Grid>
+
+                        <Grid item xs={3}>
+
+                        </Grid>
+
+                    </Grid>
+
+                    <Grid item className='suggestionVideo xyz'>
+                        {this.state.recomendVideos.map((key, index) => {
+                            console.log(key)
+                            return (
+                                <Grid container spacing={16} className='mostPopularVideos'>
+                                    <Grid item xs={2}>
+
+                                    </Grid>
+                                    <Grid item >
+                                        <ButtonBase>
+                                            <Link
+                                                to={{
+                                                    pathname: `/watch?=${key.id.videoId}`,
+                                                    state: { fromDashboard: true }
+                                                }}
+                                            >
+                                                <img
+                                                    src={key.snippet.thumbnails.medium.url}
+                                                    alt="new"
+                                                />
+                                            </Link>
+                                        </ButtonBase>
+                                    </Grid>
+                                    <Grid item xs={1}>
+
+                                    </Grid>
+
+                                    <Grid item xs={12} sm md conatiner >
+                                        <Grid item xs container direction="column" spacing={16}>
+
+                                            <Grid item xs spacing={16}>
+                                                <Typography gutterBottom variant="subtitle1">
+                                                    {key.snippet.title}
+                                                </Typography>
+                                                <Typography variant="body2" gutterBottom>
+                                                    {key.snippet.channelTitle}
+                                                </Typography>
+                                            </Grid>
+
+                                        </Grid>
+                                    </Grid>
+
+                                </Grid>
+                            )
+                        })}
+                    </Grid>
             </div>
         )
     }
