@@ -4,8 +4,9 @@ import '../styles/variable.css'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import SearchBar from './searchBar';
-import { Grid, ButtonBase, Paper } from '@material-ui/core'
+import { Grid, ButtonBase } from '@material-ui/core'
 import Typography from '@material-ui/core/Typography';
+import VideoPlayer from './videoPlayer'
 
 
 
@@ -82,6 +83,8 @@ class Video extends React.Component {
                         </Grid>
 
                     </Grid>
+
+                    {/* <VideoPlayer /> */}
 
                     <Grid item className='suggestionVideo xyz'>
                         {this.state.recomendVideos.map((key, index) => {

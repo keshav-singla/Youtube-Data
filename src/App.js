@@ -5,6 +5,8 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Search from './components/search';
 import Searchlist from './components/searchList';
 import Video from './components/video';
+import VideoPlayer from './components/videoPlayer';
+
 class App extends React.Component {
   constructor() {
     super()
